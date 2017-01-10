@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 /**
  * Created by 17697 on 2016/12/17.
  * 利用springmvc发布restful形式的URL
+ * 对user的增删改查
  */
 @Controller
 @RequestMapping("/user")
