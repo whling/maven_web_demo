@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by 17697 on 2016/12/17.
+ * 利用springmvc发布rest风格的URL
  */
 @Controller
 @RequestMapping("/user")
