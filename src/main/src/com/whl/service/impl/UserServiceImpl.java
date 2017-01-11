@@ -1,6 +1,7 @@
 package com.whl.service.impl;
 
 import com.whl.jdbc.UserJdbc;
+import com.whl.mapper.UserMapper;
 import com.whl.pojo.User;
 import com.whl.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserJdbc userJdbc;
 
+    @Autowired
+    private UserMapper userMapper;
+
     public User getUserById(Long id)throws Exception{
-        User user= userJdbc.getUserById(id);
+        User user= userMapper.findUserById(id);
         return user;
     }
 
@@ -31,16 +35,16 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void insertUser(User user)throws Exception {
-        userJdbc.insertUser(user);
+        userMapper.insertUser(user);
     }
 
     @Override
     public void deleteUser(Long id) throws Exception{
-        userJdbc.deleteUser(id);
+        userMapper.deleteUserById(id);
     }
 
     @Override
     public void updateUser(User user) throws Exception{
-        userJdbc.updateUser(user);
+        userMapper.updateUser(user);
     }
 }

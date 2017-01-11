@@ -8,7 +8,7 @@ import java.sql.SQLException;
 /**
  * @Author: Whling
  * @Date: Created in 14:55 2017/1/2
- * @Modified By:
+ * @Modified By:  使用jdbctemplate时使用
  * @Description:
  */
 public class UserMapper implements RowMapper<User> {
