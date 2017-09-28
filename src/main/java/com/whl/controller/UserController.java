@@ -22,23 +22,24 @@ public class UserController {
 
     @RequestMapping("/getUserName")
     @ResponseBody
-    public String getUserName(Model model)throws Exception{
+    public String getUserName(Model model) throws Exception {
         User user = this.userService.getUserById(1L);
         return user.getUsername();
     }
 
     /**
      * 根据id查询用户
+     *
      * @param id
      * @return
      */
-    @RequestMapping(value = "/{id}",method = RequestMethod.GET)
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<User> getUser(@PathVariable Long id){
+    public ResponseEntity<User> getUser(@PathVariable(value = "id") Long id) {
         User user = null;
         try {
             user = userService.getUserById(id);
-            if(null==user){
+            if (null == user) {
                 //资源不存在，响应404
                 return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
             }
@@ -51,11 +52,11 @@ public class UserController {
     }
 
     /**
-            * 新增用户
+     * 新增用户
      *
-             * @param user
+     * @param user
      * @return
-             */
+     */
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> saveUser(User user) {
         try {
@@ -88,8 +89,7 @@ public class UserController {
 
     /**
      * 删除用户资源
-     *
-     * @param user
+     * @param id
      * @return
      */
     @RequestMapping(method = RequestMethod.DELETE)

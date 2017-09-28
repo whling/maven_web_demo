@@ -1,6 +1,7 @@
 package com.whl.service.impl;
 
 import com.whl.jdbc.UserJdbc;
+import com.whl.mapper.NewUserMapper;
 import com.whl.mapper.UserMapper;
 import com.whl.pojo.User;
 import com.whl.service.UserService;
@@ -20,31 +21,34 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserJdbc userJdbc;
 
+    //@Autowired
+    //private UserMapper userMapper;
+
     @Autowired
-    private UserMapper userMapper;
+    private NewUserMapper newUserMapper;
 
     public User getUserById(Long id)throws Exception{
-        User user= userMapper.findUserById(id);
+        User user= newUserMapper.selectByPrimaryKey(id);
         return user;
     }
 
     @Override
     public List<User> getUserList()throws Exception {
-        return userJdbc.getUserList();
+        return newUserMapper.select(null);
     }
 
     @Override
     public void insertUser(User user)throws Exception {
-        userMapper.insertUser(user);
+        newUserMapper.insert(user);
     }
 
     @Override
     public void deleteUser(Long id) throws Exception{
-        userMapper.deleteUserById(id);
+        newUserMapper.deleteByPrimaryKey(id);
     }
 
     @Override
     public void updateUser(User user) throws Exception{
-        userMapper.updateUser(user);
+        newUserMapper.updateByPrimaryKey(user);
     }
 }
